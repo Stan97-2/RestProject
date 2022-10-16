@@ -14,7 +14,7 @@ public enum ItemDao {
 
     private final Map<String, User> userList = new HashMap<>();
 
-    private ItemDao() {
+    ItemDao() {
 
         User user1 = new User("Agatha", "Londres");
         User user2 = new User("Jean", "Paris");
@@ -81,7 +81,7 @@ public enum ItemDao {
         Map<String, Item> content = new HashMap<>();
 
         for (Item item: contentProvider.values()) {
-            if (item.getOwner().getCity().toLowerCase().equals(city.toLowerCase())) {
+            if (item.getOwner().getCity().equalsIgnoreCase(city)) {
                 content.put(String.valueOf(content.size()+1), item);
             }
         }

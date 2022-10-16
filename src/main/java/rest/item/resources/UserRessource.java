@@ -20,9 +20,9 @@ public class UserRessource {
 
         Item item;
 
-        if (category == "movie") {
+        if (category.equals("movie")) {
             item = new Movie(ItemDao.instance.getUsers().get(userId), name, year);
-        } else if (category == "book") {
+        } else if (category.equals("book")) {
             item = new Book(ItemDao.instance.getUsers().get(userId), name, year);
         } else {
             item = new VideoGame(ItemDao.instance.getUsers().get(userId), name, year);

@@ -1,10 +1,5 @@
 package rest.item.model;
 
-import rest.item.dao.ItemDao;
-
-import java.security.acl.Owner;
-import java.util.List;
-
 public class User {
 
     private int id;
