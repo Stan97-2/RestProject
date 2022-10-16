@@ -12,6 +12,8 @@ public enum ItemDao {
 
     private final Map<String, Item> contentProvider = new HashMap<>();
 
+    private final Map<String, User> userList = new HashMap<>();
+
     private ItemDao() {
 
         User user1 = new User("Agatha", "Londres");
@@ -29,6 +31,10 @@ public enum ItemDao {
 
     public Map<String, Item> getModel() {
         return contentProvider;
+    }
+
+    public Map<String, User> getUsers() {
+        return userList;
     }
 
     public Map<String, Item> searchingByCategory(String category) {
