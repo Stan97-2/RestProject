@@ -30,13 +30,14 @@ public class UserRessource {
         if (Integer.parseInt(userId) == item.getOwnerId()) {
             ItemDao.instance.getModel().remove(itemId);
         } else {
-            throw new RuntimeException("Delete: Not allowed to delete this item");
+            throw new RuntimeException("Not allowed to delete this item");
         }
     }
 
     // Update details about a specific item
     @POST
-    public void updateItem(Item item) {
+    @Path("{userId}/update/{itemId}")
+    public void updateItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         // TODO
     }
 
@@ -46,7 +47,7 @@ public class UserRessource {
     public void borrowItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         Item item = ItemDao.instance.getModel().get(userId);
         if (item == null) {
-            throw new RuntimeException("Get: Item with " + userId +  " not found");
+            throw new RuntimeException("Item with id " + itemId +  " not found");
         }
         item.setBorrowed(true);
     }
@@ -63,6 +64,7 @@ public class UserRessource {
         }
     }
 
+    // Add a review to a specific item
     @POST
     @Path("{userId}/item/{itemId}/review")
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})

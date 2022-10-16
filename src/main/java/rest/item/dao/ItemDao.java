@@ -20,9 +20,6 @@ public enum ItemDao {
         Item item1 = new Book(user1, "2002", "Harry Potter");
         Item item2 = new Item(user2, "2002", "Le Seigneur des Anneaux");
 
-        user1.addReview(item1, 5, "Un incontournable !");
-        user1.addReview(item1, 4, "Très bon livre !");
-
         item1.addTag("magie");
         item2.addTag("aventure");
 
