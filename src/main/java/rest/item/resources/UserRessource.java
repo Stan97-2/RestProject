@@ -18,8 +18,8 @@ public class UserRessource {
                         @FormParam("name") String name,
                         @FormParam("year") String year) {
 
-       /* Item item = new Item(Integer.parseInt(userId), name, year);
-        ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()), item);*/
+       Item item = new Item(ItemDao.instance.getUsers().get(userId), name, year);
+        ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()), item);
     }
 
     // Delete a given item (DONE)
