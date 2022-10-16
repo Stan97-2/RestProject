@@ -19,8 +19,11 @@ public enum ItemDao {
         User user1 = new User("Agatha", "Londres");
         User user2 = new User("Jean", "Paris");
 
+        userList.put("1", user1);
+        userList.put("2", user2);
+
         Item item1 = new Book(user1, "2002", "Harry Potter");
-        Item item2 = new Item(user2, "2002", "Le Seigneur des Anneaux");
+        Item item2 = new Item(user2, "2009", "Le Seigneur des Anneaux");
 
         item1.addTag("magie");
         item2.addTag("aventure");

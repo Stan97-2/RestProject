@@ -1,8 +1,7 @@
 package rest.item.resources;
 
 import rest.item.dao.ItemDao;
-import rest.item.model.Item;
-import rest.item.model.Review;
+import rest.item.model.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,10 +14,20 @@ public class UserRessource {
     @Path("{userId}/add")
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     public void addItem(@PathParam("userId") String userId,
+                        @FormParam("category") String category,
                         @FormParam("name") String name,
                         @FormParam("year") String year) {
 
-       Item item = new Item(ItemDao.instance.getUsers().get(userId), name, year);
+        Item item;
+
+        if (category == "movie") {
+            item = new Movie(ItemDao.instance.getUsers().get(userId), name, year);
+        } else if (category == "book") {
+            item = new Book(ItemDao.instance.getUsers().get(userId), name, year);
+        } else {
+            item = new VideoGame(ItemDao.instance.getUsers().get(userId), name, year);
+        }
+
         ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()), item);
     }
 
@@ -35,14 +44,14 @@ public class UserRessource {
     }
 
     // Update details about a specific item
-    @POST
+    @PUT
     @Path("{userId}/update/{itemId}")
     public void updateItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         // TODO
     }
 
     // Borrow a specific item (DONE)
-    @POST
+    @PUT
     @Path("{userId}/borrow/{itemId}")
     public void borrowItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         Item item = ItemDao.instance.getModel().get(userId);
