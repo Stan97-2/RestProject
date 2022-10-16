@@ -7,14 +7,12 @@ public class User {
     private String name;
     private String city;
 
-    // Constructor
     public User(String name, String city) {
         this.id = idCount++;
         this.name = name;
         this.city = city;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -38,10 +36,4 @@ public class User {
     public void setCity(String city) {
         this.city = city;
     }
-
-
-  /* public Owner getOwner(int userId) {
-        return
-    }
-    */
 }

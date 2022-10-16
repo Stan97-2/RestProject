@@ -6,5 +6,7 @@ public class VideoGame extends Item {
         super(user, year, name);
     }
 
-
+    public String getCategory() {
+        return "video-game";
+    }
 }

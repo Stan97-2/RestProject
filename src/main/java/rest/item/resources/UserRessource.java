@@ -36,18 +36,32 @@ public class UserRessource {
     @Path("{userId}/delete/{itemId}")
     public void deleteItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         Item item = ItemDao.instance.getModel().get(itemId);
-        if (Integer.parseInt(userId) == item.getOwnerId()) {
+        if (Integer.parseInt(userId) == item.getOwner().getId()) {
             ItemDao.instance.getModel().remove(itemId);
         } else {
-            throw new RuntimeException("Not allowed to delete this item");
+            throw new RuntimeException("This user is not allowed to delete this item");
         }
     }
 
     // Update details about a specific item
     @PUT
     @Path("{userId}/update/{itemId}")
-    public void updateItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
-        // TODO
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    public void updateItem(@PathParam("userId") String userId,
+                           @PathParam("itemId") String itemId,
+                           @FormParam("name") String name,
+                           @FormParam("year") String year) {
+        Item item = ItemDao.instance.getModel().get(itemId);
+        if (item == null) {
+            throw new RuntimeException("Item with id " + itemId +  " not found");
+        }
+        if (Integer.parseInt(userId) == item.getOwner().getId()) {
+            item.setName(name);
+            item.setYear(year);
+        } else {
+            throw new RuntimeException("This user is not allowed to update this item");
+        }
+
     }
 
     // Borrow a specific item (DONE)
@@ -66,7 +80,7 @@ public class UserRessource {
     @Path("{userId}/buy/{itemId}")
     public void buyItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
         Item item = ItemDao.instance.getModel().get(itemId);
-        if (Integer.parseInt(userId) != item.getOwnerId()) {
+        if (Integer.parseInt(userId) != item.getOwner().getId()) {
             ItemDao.instance.getModel().remove(itemId);
         } else {
             throw new RuntimeException("You already own this item you can't buy it");

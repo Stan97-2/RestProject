@@ -86,10 +86,6 @@ public class Item {
         this.reviews = reviews;
     }
 
-    public int getOwnerId() {
-        return this.owner.getId();
-    }
-
     public void addReview(Review review) {
         reviews.add(review);
     }
