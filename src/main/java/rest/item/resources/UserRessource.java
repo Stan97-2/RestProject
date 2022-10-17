@@ -28,7 +28,7 @@ public class UserRessource {
             item = new VideoGame(ItemDao.instance.getUsers().get(userId), name, year);
         }
 
-        ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()), item);
+        ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()+1), item);
     }
 
     // Delete a given item

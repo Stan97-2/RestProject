@@ -2,9 +2,7 @@ package rest.item.dao;
 
 import rest.item.model.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public enum ItemDao {
 
@@ -22,14 +20,27 @@ public enum ItemDao {
         userList.put("1", user1);
         userList.put("2", user2);
 
-        Item item1 = new Book(user1, "2002", "Harry Potter");
-        Item item2 = new Item(user2, "2009", "Le Seigneur des Anneaux");
+        Item item1 = new Book(user1, "1997", "Harry Potter and the Philosopher's Stone");
+        Item item2 = new Book(user2, "1954", "The Lord of the Rings");
+        Item item3 = new Movie(user2, "2018", "Avengers Infinity War");
+        Item item4 = new Movie(user1, "2009", "Avatar");
+        Item item5 = new VideoGame(user1, "2015", "Call of Duty: Black Ops 3");
+        Item item6 = new VideoGame(user2, "2013", "The Last of Us");
 
-        item1.addTag("magie");
-        item2.addTag("aventure");
+        item1.setTags(Arrays.asList("magic", "school"));
+        item2.setTags(Arrays.asList("magic", "super power"));
+        item3.setTags(Arrays.asList("superhero", "super power", "war"));
+        item4.setTags(Arrays.asList("future", "space war", "battle"));
+        item5.setTags(Arrays.asList("fps", "war", "weapon"));
+        item6.setTags(Arrays.asList("survival", "aventure", "apocalypse"));
 
         contentProvider.put("1", item1);
         contentProvider.put("2", item2);
+        contentProvider.put("3", item3);
+        contentProvider.put("4", item4);
+        contentProvider.put("5", item5);
+        contentProvider.put("6", item6);
+
     }
 
     public Map<String, Item> getModel() {
@@ -85,7 +96,6 @@ public enum ItemDao {
                 content.put(String.valueOf(content.size()+1), item);
             }
         }
-
         return content;
     }
 
