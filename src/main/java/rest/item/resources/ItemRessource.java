@@ -23,7 +23,6 @@ public class ItemRessource {
         this.id = id;
     }
 
-
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Item getItem() {

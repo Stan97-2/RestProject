@@ -44,7 +44,7 @@ public class ItemsRessources {
         return new ArrayList<>(ItemDao.instance.getModel().get(id).getReviews());
     }
 
-    //
+    // Search items by user
     @GET
     @Path("user/{userId}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -52,7 +52,7 @@ public class ItemsRessources {
         return new ArrayList<>(ItemDao.instance.searchingByUser(Integer.parseInt(userId)).values());
     }
 
-    //
+    // Search items by category
     @GET
     @Path("category/{category}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -60,7 +60,7 @@ public class ItemsRessources {
         return new ArrayList<>(ItemDao.instance.searchingByCategory(category).values());
     }
 
-    //
+    // Search items by keyword
     @GET
     @Path("keyword/{keyword}")
     @Produces({MediaType.APPLICATION_JSON})
@@ -68,7 +68,7 @@ public class ItemsRessources {
         return new ArrayList<>(ItemDao.instance.searchingByKeyword(keyword).values());
     }
 
-    //
+    // Search items by city
     @GET
     @Path("city/{city}")
     @Produces({MediaType.APPLICATION_JSON})

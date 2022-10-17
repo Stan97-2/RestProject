@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/user")
 public class UserRessource {
 
-    // Add an item to the items list (TO COMPLETE)
+    // Add an item to the items list
     @POST
     @Path("{userId}/add")
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
@@ -31,7 +31,7 @@ public class UserRessource {
         ItemDao.instance.getModel().put(String.valueOf(ItemDao.instance.getModel().size()), item);
     }
 
-    // Delete a given item (DONE)
+    // Delete a given item
     @DELETE
     @Path("{userId}/delete/{itemId}")
     public void deleteItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
@@ -64,7 +64,7 @@ public class UserRessource {
 
     }
 
-    // Borrow a specific item (DONE)
+    // Borrow a specific item
     @PUT
     @Path("{userId}/borrow/{itemId}")
     public void borrowItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
@@ -75,7 +75,7 @@ public class UserRessource {
         item.setBorrowed(true);
     }
 
-    // Buy a specific item (DONE)
+    // Buy a specific item
     @DELETE
     @Path("{userId}/buy/{itemId}")
     public void buyItem(@PathParam("userId") String userId, @PathParam("itemId") String itemId) {
@@ -102,6 +102,5 @@ public class UserRessource {
         } else {
             throw new RuntimeException("Rate must be between 0 and 5");
         }
-
     }
 }
